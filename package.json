@@ -1,0 +1,40 @@
+{
+  "name": "elearner2.0",
+  "version": "1.0.0",
+  "description": "social network for learners avwhere",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@date-io/date-fns": "^2.6.1",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "framer-motion": "^1.10.3",
+    "gravatar": "^1.8.0",
+    "jquery": "^3.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.9",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monica6423/remote-learning-app2.0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/monica6423/remote-learning-app2.0/issues"
+  },
+  "homepage": "https://github.com/monica6423/remote-learning-app2.0#readme"
+}
