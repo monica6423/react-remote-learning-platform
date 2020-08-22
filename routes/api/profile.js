@@ -6,7 +6,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-
+const Post = require('../../models/Post');
 //@route GET api/profile/me
 //@decs Get current user profile
 //@access Public
@@ -117,6 +117,52 @@ router.get('/', async (req, res) => {
     }
 });
 
+//@route POST api/profile
+//@decs Get all profile with load more function
+//@access Public
+router.post('/postload', async (req, res) => {
+    let order = req.body.order ? req.body.order : "desc";
+    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+    let skip = parseInt(req.body.skip);
+
+
+    let findArgs = {};
+ 
+
+    for (let key in req.body.filters) {
+
+        if (req.body.filters[key].length > 0) {
+            if (key === "price") {
+                findArgs[key] = {
+                    $gte: req.body.filters[key][0],
+                    $lte: req.body.filters[key][1]
+                }
+            } else {
+                findArgs[key] = req.body.filters[key];
+            }
+        }
+    }
+
+    console.log(findArgs)
+
+
+
+    try {
+        //populate from user collection and an array of fields
+        const profiles = await Profile.find(findArgs)
+        .populate('user', ['name', 'avatar'])
+        .sort([[sortBy, order]])
+        .skip(skip)
+        .limit(limit);
+        res.json({profiles, postSize: profiles.length});
+
+       
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 //@route GET api/profile/user/:user_id
 //@decs Get profile by user id
@@ -207,3 +253,102 @@ router.put('/experience', [auth, [
         res.status(500).send('Server Error');
     }
 });
+
+
+//@route DELETE api/profile/experience/exp_id
+//@decs Delete experience from profile
+//@access Private
+router.delete('/experience/:exp_id', auth, async (req, res) => {
+    try {
+        const foundProfile = await Profile.findOne({ user: req.user.id});
+        //kick out that exp_id
+        console.log(typeof foundProfile.experience);
+        foundProfile.experience = foundProfile.experience.filter(
+            exp => exp._id.toString() !== req.params.exp_id
+        );
+       
+        console.log(typeof req.params.exp_id);
+
+
+        await foundProfile.save();
+        return res.status(200).json(foundProfile);
+    } catch (err) {
+        res.status(500).send('Server Error');
+    }
+});
+//@route PUT api/profile/education
+//@decs Add profile education
+//@access Private
+router.put('/education', [auth, [
+    check('school', 'School is required')
+    .not()
+    .isEmpty(),
+    check('degree', 'Degree is required')
+    .not()
+    .isEmpty(),
+    check('fieldofstudy', 'Field of study is required')
+    .not()
+    .isEmpty(),
+    check('from', 'From date is required')
+    .not()
+    .isEmpty()
+]], async( req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({ errors:errors.array()});
+
+       
+    }
+    const {
+        school,
+        degree,
+        fieldofstudy,
+        from,
+        to,
+        current,
+        description
+    } = req.body;
+    //creat an object that user submitted
+    const newEdu = {
+        school,
+        degree,
+        fieldofstudy,
+        from,
+        to,
+        current,
+        description
+    }
+
+    try {
+        const profile = await Profile.findOne({ user: req.user.id});
+        profile.education.unshift(newEdu);
+        await profile.save();
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+//@route DELETE api/profile/education/exp_id
+//@decs Delete education from profile
+//@access Private
+router.delete('/education/:edu_id', auth, async (req, res) => {
+    try {
+        const foundProfile = await Profile.findOne({ user: req.user.id});
+        console.log(typeof foundProfile.education);
+        foundProfile.education = foundProfile.education.filter(
+            edu => edu._id.toString() !== req.params.edu_id
+        );
+       
+        console.log(typeof req.params.edu_id);
+
+
+        await foundProfile.save();
+        return res.status(200).json(foundProfile);
+    } catch (err) {
+        res.status(500).send('Server Error');
+    }
+});
+
+
+module.exports = router;
