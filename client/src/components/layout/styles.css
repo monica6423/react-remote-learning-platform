@@ -1,0 +1,34 @@
+.trails-main {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.trails-text {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: rgb(255, 239, 98);
+  font-size: 2em;
+  font-weight: 800;
+  text-transform: uppercase;
+  will-change: transform, opacity;
+  overflow: hidden;
+}
+
+.trails-text > div {
+  overflow: hidden;
+}
+
+
+/**/
+#map{
+  height: 500px;
+  width: 500px;
+}
