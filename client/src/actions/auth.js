@@ -6,7 +6,11 @@ import {
     REGISTER_FAIL,
     USER_LOADED,
     AUTH_ERROR,
-
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+    CLEAR_PROFILE,
+    RESET_PROFILE_LOADING
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
