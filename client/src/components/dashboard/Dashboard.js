@@ -46,7 +46,7 @@ const  Dashboard = ({
                 
                 <div className="dash-right">
                     <div>
-                    <Experience experience={profile.experience} />
+                        <Experience experience={profile.experience} />
                         <Education education={profile.education} />
                         <div className="my-2 buttons">
                         <Button
