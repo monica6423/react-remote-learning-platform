@@ -1,6 +1,6 @@
 # react-remote-learning-platform
 
-Demo
+Demo:
 https://nameless-brook-30117.herokuapp.com/
 
 1. Built with React Functional Component Hooks
