@@ -24,7 +24,7 @@ function App() {
     setTimeout(() => set(['Join ', 'the largest', 'online study group']), 1000)
     console.log( set );
     setTimeout(() => set(['and!']), 3000)
-    setTimeout(() => set(['The best online ', 'study group']), 5050)
+    setTimeout(() => set(['The best online ', 'study group']), 5000)
    
   }, [])
 
