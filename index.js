@@ -18,7 +18,7 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 
 //Serve static assets in production
-if(process.env.NODE_ENV === 'production'){
+if(process.env.ENV === 'production'){
     //set static folder
     app.use(express.static('client/build'));
     app.get('*',(req, res) => {
@@ -29,3 +29,6 @@ if(process.env.NODE_ENV === 'production'){
 const PORT = process.env.PORT || 5050;
 
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
+
+// Export the Express API
+module.exports = app;
