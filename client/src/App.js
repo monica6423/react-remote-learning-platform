@@ -24,13 +24,16 @@ import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 
-if(localStorage.token) {
-  setAuthToken(localStorage.token);
-}
-
 const App = () => {
 
   useEffect(() => {
+    // check for token in LS when app first runs
+    if (localStorage.token) {
+      // if there is a token set axios headers for all requests
+      setAuthToken(localStorage.token);
+    }
+    // try to fetch a user, if no token or invalid token we
+    // will get a 401 response from our API
     store.dispatch(loadUser());
   }, []);
 

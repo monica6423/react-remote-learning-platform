@@ -98,8 +98,6 @@ router.post('/', [ auth, [
         console.error(err.message);
         res.status(500).send('server error');
     }
-
-    res.send('hih');
 });
 
 //@route GET api/profile

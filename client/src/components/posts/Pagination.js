@@ -9,7 +9,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
 
   //Add the 'selected-page' class and styling to the first page button only once on a reload of the page
   useEffect(() => {
-    document.querySelectorAll(".page-button")[0].classList.add('selected-page');
+    //document.querySelectorAll(".page-button")[0].classList.add('selected-page');
   }, []);
   
   function selectedPage(e) {
