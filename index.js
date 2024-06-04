@@ -6,9 +6,7 @@ const cors = require('cors')
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' 
-    ? 'https://react-remote-learning-platform.vercel.app' 
-    : 'http://localhost:3000', // Allow localhost during development
+    origin: '*', // Allow localhost during development
     optionsSuccessStatus: 200
   };
   
