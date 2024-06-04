@@ -75,9 +75,9 @@ const Landing = ({ isAuthenticated}) => {
   const [count, setCount] = useState(0);
 
 
-  if(isAuthenticated){
-    return <Redirect to='/dashboard' />
-  }
+  // if(isAuthenticated){
+  //   return <Redirect to='/dashboard' />
+  // }
 
 
   /*Feature Animation*/
