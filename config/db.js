@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('config');
-const db = process.env.MONGO_URI;
+const db = "mongodb+srv://monica6423:vVTm1TbTeEibMZDh@connector.npkfemv.mongodb.net/?retryWrites=true&w=majority&appName=Connector";
 
 //asyn await method
 const connectDB = async () => {

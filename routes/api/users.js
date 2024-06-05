@@ -61,7 +61,7 @@ router.post('/', [
                 id: user.id
             }
         }
-        jwt.sign(payload, process.env.JWT_SECRET,
+        jwt.sign(payload, "secret",
             { expiresIn: 3600000 }, (err, token) => {
                 if (err) throw err;
                 res.json({ token });

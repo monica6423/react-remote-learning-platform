@@ -18,15 +18,6 @@ router.get('/', auth, async (req, res) => {
         res.json(user);
     } catch (err) {
         console.error(err.message);
-        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-        res.setHeader(
-            'Access-Control-Allow-Headers',
-            'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-        )
-        if (req.method === 'OPTIONS') {
-            res.status(200).end()
-            return
-        }
         res.status(500).send('server error');
     }
 });
@@ -48,15 +39,6 @@ router.post('/', [
     const { email, password } = req.body;
 
     try {
-        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-        res.setHeader(
-            'Access-Control-Allow-Headers',
-            'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-        )
-        if (req.method === 'OPTIONS') {
-            res.status(200).end()
-            return
-        }
         //see if user exists
         let user = await User.findOne({ email });
         if (!user) {
@@ -75,7 +57,7 @@ router.post('/', [
                 id: user.id
             }
         }
-        jwt.sign(payload, process.env.JWT_SECRET,
+        jwt.sign(payload, "secret",
             { expiresIn: 3600000 }, (err, token) => {
                 if (err) throw err;
                 res.json({ token });
