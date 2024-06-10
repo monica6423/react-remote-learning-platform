@@ -280,28 +280,7 @@ const Landing = ({ isAuthenticated}) => {
                 </Fade>
                </motion.div>
               </div>
-
-
               </div>
-
-              <motion.div className=""
-               style={pageStyle}
-               initial="initial"
-               animate="in"
-               variants={pageVariants}
-               transition={featureTransition}>
-                <Fade bottom  duration={1000}>
-                <h1 className="headline">Top Groups</h1>
-                </Fade>
-               </motion.div>
-          
-
-           <div className="slick-cards">
-           <Slick />
-
-          </div>
-
-
           <div className="ending">
                <div className="left-ending">
                

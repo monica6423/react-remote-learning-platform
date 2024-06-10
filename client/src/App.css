@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: 'Balsamiq Sans', cursive;
+  font-family: 'Poppins';
   font-size: 1rem;
   line-height: 1.5;
   background-color: #fff;
@@ -22,7 +22,7 @@ body {
 }
 
 .MuiTypography-body1, .MuiButton-root{
-  font-family: 'Balsamiq Sans', cursive !important;
+  font-family: 'Poppins';
 }
 
 a {
