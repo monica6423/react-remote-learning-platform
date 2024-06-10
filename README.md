@@ -1,7 +1,7 @@
 # react-remote-learning-platform
 
 Demo:
-https://nameless-brook-30117.herokuapp.com/
+https://react-remote-learning-platform.vercel.app/
 
 1. Built with React Functional Component Hooks
 2. Using Axios. RESTful API
