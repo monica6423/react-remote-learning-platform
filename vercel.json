@@ -15,5 +15,13 @@
             "Access-Control-Allow-Origin": "*"
           }
       }
-  ]
+  ],
+  "functions": {
+    "api/test.js": {
+      "maxDuration": 30 
+    },
+    "route/api/*.js": {
+      "maxDuration": 60
+    }
+  }
 }
