@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { login } from '../../actions/auth'
 import { Submit } from '../layout/Submit'
-import { motion } from 'framer-motion'
 import TextField from '@material-ui/core/TextField'
 
 const Login = ({ login, isAuthenticated }) => {

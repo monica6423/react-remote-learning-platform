@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -9,13 +9,13 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 const CommentItem = ({
   postId,
-  comment: { _id, text, name, avatar, user, date },
+  comment: { _id, text, name, user, date },
   auth,
   deleteComment,
   profile: { profiles },
 }) => {
   return (
-    <div class="post bg-white p-1 my-1">
+    <div className="post bg-white p-1 my-1">
       <div>
         <Link to={`/profile/${user}`}>
           {profiles.map(
@@ -32,10 +32,10 @@ const CommentItem = ({
         </Link>
       </div>
       <div>
-        <p class="my-1">{text}</p>
+        <p className="my-1">{text}</p>
 
         <div className="post-down">
-          <p class="post-date">
+          <p className="post-date">
             Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
           </p>
           {!auth.loading && user === auth.user._id && (

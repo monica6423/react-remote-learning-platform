@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import SpeedDial from '@material-ui/lab/SpeedDial'
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon'

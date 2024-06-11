@@ -9,9 +9,9 @@ import Button from '@material-ui/core/Button'
 const PostForm = ({ addPost }) => {
   const [text, setText] = useState('')
   return (
-    <div class="post-form">
+    <div className="post-form">
       <form
-        class="form my-1"
+        className="form my-1"
         onSubmit={(e) => {
           e.preventDefault()
           addPost({ text })

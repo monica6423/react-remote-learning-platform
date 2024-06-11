@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { setAlert } from './alert'
 
 import {
@@ -8,7 +7,6 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
-  GET_REPOS,
   RESET_PROFILE_LOADING,
   GET_PROFILE_TO_EDIT,
   PROFILES_LOAD,
@@ -256,10 +254,10 @@ export const deleteEducation = (id) => async (dispatch) => {
 }
 
 //Delete account and profile
-export const deleteAccount = (id) => async (dispatch) => {
+export const deleteAccount = (_id) => async (dispatch) => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      await API.delete(`api/profile/`)
+      await API.delete('api/profile/')
 
       dispatch({
         type: CLEAR_PROFILE,

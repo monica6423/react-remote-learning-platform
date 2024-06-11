@@ -1,16 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import SpinnerProfiles from '../layout/SpinnerProfiles'
-import { Spring, useTrail, useSpring, animated } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 import ProfileItem from './ProfileItem'
 import { getProfilesLoad } from '../../actions/profile'
 import { connect } from 'react-redux'
 import CheckBox from '../layout/CheckBox'
-import axios from 'axios'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     // Style sheet name ⚛️
     MuiButton: {
@@ -31,12 +30,10 @@ const theme = createMuiTheme({
 
 const Profiles = ({
   getProfilesLoad,
-  profile: { profiles, loading },
+  profile: { profiles },
   postSize,
 }) => {
   // console.log(profiles.length);
-  console.log(postSize)
-  console.log(profiles.length)
   const [Profilesload, setProfilesload] = useState([])
   const [Skip, setSkip] = useState(0)
   const [Limit, setLimit] = useState(6)
@@ -65,8 +62,7 @@ const Profiles = ({
     getProfilesLoad(variables)
     setSkip(0)
   }
-  const handleFilters = (filters, category) => {
-    console.log(filters)
+  const handleFilters = (filters, category) => {  
     const newFilters = { ...Filters }
     newFilters[category] = filters
 
@@ -118,19 +114,19 @@ const Profiles = ({
 
           <div className="right-buddy">
             <animated.div
-              class="buddy1 buddy"
+              className="buddy1 buddy"
               style={{ transform: props.xy.interpolate(trans1) }}
             />
             <animated.div
-              class="buddy2 buddy"
+              className="buddy2 buddy"
               style={{ transform: props.xy.interpolate(trans2) }}
             />
             <animated.div
-              class="buddy3 buddy"
+              className="buddy3 buddy"
               style={{ transform: props.xy.interpolate(trans3) }}
             />
             <animated.div
-              class="buddy4 buddy"
+              className="buddy4 buddy"
               style={{ transform: props.xy.interpolate(trans4) }}
             />
           </div>

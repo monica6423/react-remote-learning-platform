@@ -5,7 +5,6 @@ import { setAlert } from '../../actions/alert'
 import { register } from '../../actions/auth'
 import PropTypes from 'prop-types'
 import { Submit } from '../layout/Submit'
-import { motion } from 'framer-motion'
 import TextField from '@material-ui/core/TextField'
 
 //props

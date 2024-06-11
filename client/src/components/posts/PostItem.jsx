@@ -5,7 +5,6 @@ import Moment from 'react-moment'
 import { connect } from 'react-redux'
 import { addLike, deletePost } from '../../actions/post'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp'
-import ThumbDownIcon from '@material-ui/icons/ThumbDown'
 import Button from '@material-ui/core/Button'
 import DeleteIcon from '@material-ui/icons/Delete'
 import MessageIcon from '@material-ui/icons/Message'
@@ -14,9 +13,8 @@ const PostItem = ({
   profile: { profiles },
   deletePost,
   addLike,
-  removeLike,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date },
+  post: { _id, text, name, user, likes, comments, date },
   showActions,
 }) => {
   return (
@@ -67,7 +65,7 @@ const PostItem = ({
                     </div>
                   )}
                   <MessageIcon />
-                  <span class="tooltiptext">Join Group</span>
+                  <span className="tooltiptext">Join Group</span>
                 </Link>
                 {!auth.loading && user === auth.user._id && (
                   <Button

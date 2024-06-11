@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import WarningIcon from '@material-ui/icons/Warning'
-import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
 import Collapse from '@material-ui/core/Collapse'
@@ -21,7 +19,7 @@ const Alert = ({ alerts }) => {
     alerts !== null &&
     alerts.length > 0 &&
     alerts.map((alert) => (
-      <Collapse in={open}>
+      <Collapse in={open} key={alert.id}>
         <AlertMUI
           severity={(() => {
             switch (alert.alertType) {

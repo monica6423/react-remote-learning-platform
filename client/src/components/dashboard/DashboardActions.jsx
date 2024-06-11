@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import HomeIcon from '@material-ui/icons/Home'
@@ -67,7 +67,7 @@ const DashboardActions = ({ location }) => {
 }
 
 DashboardActions.propTypes = {
-  routerprops: PropTypes.object.isRequired,
+  routerprops: PropTypes.object,
 }
 
 // const mapStateToProps = state => ({

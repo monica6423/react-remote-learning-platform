@@ -31,7 +31,7 @@ const ProfileItem = ({
       onMouseOver={() => setActive(true)}
       onMouseOut={() => setActive(false)}
     >
-      <animated.div style={spin} class="ribbon-label">
+      <animated.div style={spin} className="ribbon-label">
         {(() => {
           switch (interests) {
             case 1:

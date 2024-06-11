@@ -109,8 +109,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <Fragment>
       <input type="checkbox" className="menu-btn" id="menu-btn" />
-      <label for="menu-btn" className="menu-icon" style={{ zIndex: '100' }}>
-        <span class="menu-icon_line"></span>
+      <label htmlFor="menu-btn" className="menu-icon" style={{ zIndex: '100' }}>
+        <span className="menu-icon_line"></span>
       </label>
 
       <nav id="navbar">
