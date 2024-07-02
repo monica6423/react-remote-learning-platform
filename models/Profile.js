@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const ProfileSchema = new mongoose.Schema({
   user: {
-    //connect to model User.js Id 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
@@ -20,7 +19,7 @@ const ProfileSchema = new mongoose.Schema({
     required: true
   },
   interests: {
-    type: Number,
+    type: String,  // Assuming interests is a string based on your schema
     required: true
   },
   photo: {
@@ -115,4 +114,6 @@ const ProfileSchema = new mongoose.Schema({
   }
 });
 
-module.exports = Profile = mongoose.model('profile', ProfileSchema);
+const Profile = mongoose.model('profile', ProfileSchema);
+
+export default Profile;

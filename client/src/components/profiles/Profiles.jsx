@@ -28,11 +28,7 @@ const theme = createTheme({
   },
 })
 
-const Profiles = ({
-  getProfilesLoad,
-  profile: { profiles },
-  postSize,
-}) => {
+const Profiles = ({ getProfilesLoad, profile: { profiles }, postSize }) => {
   // console.log(profiles.length);
   const [Profilesload, setProfilesload] = useState([])
   const [Skip, setSkip] = useState(0)
@@ -62,7 +58,7 @@ const Profiles = ({
     getProfilesLoad(variables)
     setSkip(0)
   }
-  const handleFilters = (filters, category) => {  
+  const handleFilters = (filters, category) => {
     const newFilters = { ...Filters }
     newFilters[category] = filters
 
@@ -140,7 +136,6 @@ const Profiles = ({
             handleFilters={(filters) => handleFilters(filters, 'interests')}
           />
         </div>
-
         <div className="profiles">
           {profiles.length > 0 ? (
             profiles.map((profile) => (
@@ -161,7 +156,6 @@ const Profiles = ({
             <ThemeProvider theme={theme}>
               <Button onClick={onLoadMore}>Load More</Button>
             </ThemeProvider>
-            {/* <button onClick={onLoadMore} class="quickview1 hvr-float-shadow" href=""><span class="quickview">Load More</span></button> */}
           </div>
         )}
       </section>

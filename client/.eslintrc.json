@@ -27,7 +27,10 @@
   "rules": {
     "quotes": ["error", "single", { "avoidEscape": true }],
     "react/prop-types": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^e$|^_e$" }],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^e$|^_e$" }
+    ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "react/jsx-uses-react": "off",

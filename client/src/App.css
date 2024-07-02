@@ -905,6 +905,16 @@ span {
   grid-row: 1 / span 1;
   grid-column: 1 / span 5;
 }
+.book-image {
+  grid-row: 2 / span 2;
+  grid-column: 1 / span 5;
+}
+
+.view-btn {
+  grid-row: 5 / span 5;
+  grid-column: 1 / span 5;
+}
+
 .profile-img {
   grid-row: 2 / span 2;
   grid-column: 1 / span 2;

@@ -1,55 +1,57 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const PostSchema = new mongoose.Schema({
     user: {
-        // Connect each profile with the corresponding user in the User model using the mongoDB ID
+        // Connect each profile with the corresponding user in the User model using the MongoDB ID
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
-      },
-      text: {
-          type: String,
-          required: true
-      },
-      name: {
-          type: String,
-      },
-      avatar: {
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    name: {
         type: String
-      },
-      likes: [
-        {
-              user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user'
-            }
-        }
-      ],
-      comments: [
+    },
+    avatar: {
+        type: String
+    },
+    likes: [
         {
             user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'user'
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'user'
+            }
+        }
+    ],
+    comments: [
+        {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'user'
             },
             text: {
                 type: String,
                 required: true
             },
             name: {
-                type: String,
+                type: String
             },
             avatar: {
-              type: String
+                type: String
             },
             date: {
                 type: Date,
                 default: Date.now
             }
         }
-      ],
-      date: {
+    ],
+    date: {
         type: Date,
         default: Date.now
-      },   
+    }
 });
 
-module.exports = Post = mongoose.model('post', PostSchema);
+const Post = mongoose.model('post', PostSchema);
+
+export default Post;

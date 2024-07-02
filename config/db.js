@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
-const config = require('config');
+
+import mongoose from 'mongoose';
+import config from 'config';
 const db = "mongodb+srv://monica6423:vVTm1TbTeEibMZDh@connector.npkfemv.mongodb.net/?retryWrites=true&w=majority&appName=Connector";
 
 //asyn await method
-const connectDB = async () => {
+export const connectDB = async () => {
     try {
         await mongoose.connect(db, {
             useNewUrlParser: true,
@@ -19,4 +20,3 @@ const connectDB = async () => {
     }
 }
 
-module.exports = connectDB;

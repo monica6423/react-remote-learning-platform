@@ -32,6 +32,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       <li className="nav-link">
         <Link
+          to="/learnings"
+          onClick={() => {
+            document.getElementById('menu-btn').checked = false
+          }}
+        >
+          Books
+        </Link>
+      </li>
+      <li className="nav-link">
+        <Link
           to="/posts"
           onClick={() => {
             document.getElementById('menu-btn').checked = false
@@ -71,7 +81,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           Buddies
         </Link>
       </li>
-
+      <li className="nav-link">
+        <Link
+          to="/learnings"
+          onClick={() => {
+            document.getElementById('menu-btn').checked = false
+          }}
+        >
+          Books
+        </Link>
+      </li>
       <li type="submit" className="nav-link">
         <Link
           to="/login"

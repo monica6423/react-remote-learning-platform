@@ -1,73 +1,80 @@
-const express = require('express');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { check, validationResult } from 'express-validator';
+import auth from '../middleware/auth.js';
+import User from '../models/User.js';
+
+// Initialize router
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const config = require('config');
-const { check, validationResult } = require('express-validator');
 
-const auth = require('../middleware/auth');
+// Secret key for JWT (In a real application, use environment variables for secrets)
+const JWT_SECRET = "secret";
 
-const User = require('../models/User');
-//@route GET api/auth
-//@decs Test route
-//@access Public
+// @route   GET api/auth
+// @desc    Test route
+// @access  Public
 router.get('/', auth, async (req, res) => {
     try {
-
+        // Find user by ID excluding the password field
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('server error');
+        res.status(500).send('Server error');
     }
 });
 
-
-//@route POST api/auth
-//@decs Authenticate user and get token
-//@access Public
-router.post('/', [
-
-    check('email', '  Please include a valid email').isEmail(),
-    check('password', '  Password is required').exists()
-], async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { email, password } = req.body;
-
-    try {
-        //see if user exists
-        let user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ errors: [{ msg: '  Invalid Credentials' }] });
+// @route   POST api/auth
+// @desc    Authenticate user and get token
+// @access  Public
+router.post(
+    '/',
+    [
+        check('email', 'Please include a valid email').isEmail(),
+        check('password', 'Password is required').exists()
+    ],
+    async (req, res) => {
+        // Validate request
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
 
-        //plain text password that just input vs password got from db
-        const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch) {
-            return res.status(400).json({ errors: [{ msg: '  Invalid Credentials' }] });
-        }
+        // Extract email and password from the request body
+        const { email, password } = req.body;
 
-        //return jsonwebtoken
-        const payload = {
-            user: {
-                id: user.id
+        try {
+            // Check if the user exists
+            let user = await User.findOne({ email });
+            if (!user) {
+                return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
             }
-        }
-        jwt.sign(payload, "secret",
-            { expiresIn: 3600000 }, (err, token) => {
+
+            // Compare provided password with the stored password
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+            }
+
+            // Prepare payload for JWT
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            };
+
+            // Sign and return JWT token
+            jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
                 if (err) throw err;
                 res.json({ token });
             });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send('Server error');
+        }
     }
+);
 
-
-});
-
-module.exports = router;
+// Export the router as the default export
+export default router;

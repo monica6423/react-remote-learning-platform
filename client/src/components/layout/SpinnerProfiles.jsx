@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import spinner from './spinner.gif';
+import React, { Fragment } from 'react'
+import spinner from './spinner.gif'
 
 const SpinnerProfiles = () => (
   <Fragment>
@@ -9,6 +9,6 @@ const SpinnerProfiles = () => (
       alt="Loading..."
     />
   </Fragment>
-);
+)
 
-export default SpinnerProfiles;
+export default SpinnerProfiles

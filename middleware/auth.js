@@ -1,21 +1,24 @@
-const jwt = require('jsonwebtoken');
-const config = require('config');
+import jwt from 'jsonwebtoken';
+import config from 'config';
 
-module.exports = function (req, res, next) {
-    //get token from the header
+const authMiddleware = (req, res, next) => {
+    // Get token from the header
     const token = req.header('x-auth-token');
 
-    //check if no token
+    // Check if no token
     if (!token) {
         return res.status(401).json({ msg: 'No token, authorization denied' });
     }
 
-    //verify token
+    // Verify token
     try {
-        const decoded = jwt.verify(token, "secret");       
+        const decoded = jwt.verify(token, "secret");
         req.user = decoded.user;
         next();
     } catch (err) {
-        res.status(401).json({ msg: 'token is not valid' });
+        res.status(401).json({ msg: 'Token is not valid' });
     }
-}
+};
+
+// Export the middleware using ES6 export syntax
+export default authMiddleware;

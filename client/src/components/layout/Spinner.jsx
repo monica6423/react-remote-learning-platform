@@ -1,5 +1,5 @@
-import React from 'react';
-import spinner from './spinner.gif';
+import React from 'react'
+import spinner from './spinner.gif'
 
 const Spinner = () => (
   <div>
@@ -17,6 +17,6 @@ const Spinner = () => (
       alt="Loading..."
     />
   </div>
-);
+)
 
-export default Spinner;
+export default Spinner
